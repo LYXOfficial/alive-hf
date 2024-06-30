@@ -19,7 +19,7 @@ jobs:
       with:
         python-version: 3.8
     - name: Install requirements
-      working-directory: ./hexo_circle_of_friends
+      working-directory: .
       run: |
         pip install requests
     - name: keep hf alive
