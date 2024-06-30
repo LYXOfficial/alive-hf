@@ -1,0 +1,29 @@
+name: huggingface-uptime
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: "0 0,6,12,18,21 * * *"
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@main
+
+    - name: Set up Python
+      uses: actions/setup-python@main
+      with:
+        python-version: 3.8
+    - name: Install requirements
+      working-directory: ./hexo_circle_of_friends
+      run: |
+        pip install requests
+    - name: keep hf alive
+      run: |
+        python ./index.py
+    - name: keep alive
+      uses: gautamkrishnar/keepalive-workflow@master
